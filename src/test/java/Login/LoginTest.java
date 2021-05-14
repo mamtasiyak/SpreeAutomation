@@ -42,6 +42,7 @@ public class LoginTest {
         Thread.sleep(2000);
         driver.findElement(By.linkText("Logout")).click();
         Thread.sleep(2000);
+        driver.close();
     }
 
     @Test
@@ -60,6 +61,8 @@ public class LoginTest {
         driver.findElement(By.id("spree_user_password")).sendKeys("mamtasiyak1@");
         driver.findElement(By.name("commit")).click();
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]")).getText(),"Logged in successfully");
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]")).isDisplayed());
+        driver.close();
     }
 
     @Test
@@ -79,6 +82,7 @@ public class LoginTest {
         driver.findElement(By.id("spree_user_password")).sendKeys("mamtasiyak");
         driver.findElement(By.name("commit")).click();
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]")).getText(),"Invalid email or password.");
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]")).isDisplayed());
         driver.close();
     }
 }
