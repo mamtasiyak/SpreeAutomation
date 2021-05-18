@@ -22,7 +22,6 @@ public class TestSearch {
         driver = new ChromeDriver();
         driver.get("https://spree-vapasi.herokuapp.com/");
         driver.manage().window().maximize();
-        Thread.sleep(2000);
         WebElement login = driver.findElement(By.id("link-to-login"));
         login.click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -32,15 +31,14 @@ public class TestSearch {
         driver.findElement(By.name("commit")).click();
         driver.findElement(By.id("keywords")).sendKeys("shirt");
         driver.findElement(By.xpath("//*[@id=\"product_5\"]/div/div[1]/a/span")).click();
-
-        WebElement cart=driver.findElement(By.id("add-to-cart-button"));
-        cart.click();
         WebDriverWait wait1=new WebDriverWait(driver,10);
         wait1.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-button")));
-        WebElement logout=driver.findElement(By.linkText("Logout"));
-        logout.click();
+        WebElement cart=driver.findElement(By.id("add-to-cart-button"));
+        cart.click();
         WebDriverWait wait2=new WebDriverWait(driver,10);
-        wait2.until(ExpectedConditions.elementToBeClickable(By.linkText("Logout")));
+        wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"nav-bar\"]/li[2]/a")));
+        WebElement logout=driver.findElement(By.xpath("//*[@id=\"nav-bar\"]/li[2]/a"));
+        logout.click();
 
     }
 }
